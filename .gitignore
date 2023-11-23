@@ -1,5 +1,8 @@
 /*
 !.gitignore
+!trainer.py
+!train.py
+!empirical_var.pt
 !dataset_preparation.py
 !test.py
 !README.md
@@ -10,6 +13,10 @@
 Dataset/*
 !Dataset/*.py
 Dataset/datapath.py
+
+!Loss
+Loss/*
+!Loss/*.py
 
 !Model
 Model/*

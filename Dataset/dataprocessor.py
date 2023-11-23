@@ -153,4 +153,49 @@ class Image_dotmap_processing():
         return img, dotted_map
 
 
+class Generating_data_from_dotted_annotation:
+    @staticmethod
+    def construct_characteristic_function(head_position, bandwidth, origin=0,
+                                          step=30, step_length=0.01):
+        '''
+
+        discretized characteristic function
+
+        Args:
+            head_position (n×2 tensor): 2D tensor, the length of first dimension corresponds to the number of heads,
+            each line corresponds to a head, the first column is the x coordinate, the second column is the y coordinate.
+
+            bandwidth (1D tensor or single value): the bandwidth of each head's Gauss
+
+            origin (1×2 tensor or single value): decide the origin of the image plane
+
+            step (single integer): how many steps the c.f. span in the plane (originate in the origin and expand to
+            4 directions, up, down, left, right)
+
+            step_length (single value): the span of each step, the final presented domain of the c.f. is decided by step
+            and step_length
+
+        Returns: the c.f. values in the range [-step * step_length, step * step_length) × [-step * step_length, step * step_length)
+
+        '''
+        if head_position.shape[0] > 0:
+            gauss_mean = head_position - origin
+            if not isinstance(bandwidth, (int, float)):
+                bandwidth = torch.reshape(bandwidth, (1, 1, head_position.shape[0])).to(dtype=gauss_mean.dtype,
+                                                                                        device=gauss_mean.device)
+            plane = torch.cat(
+                [torch.arange(-step, step).unsqueeze(0).expand(2 * step, 2 * step).unsqueeze(2) * step_length,
+                 torch.arange(-step, step).unsqueeze(1).expand(2 * step, 2 * step).unsqueeze(2) * step_length],
+                dim=2).to(device=gauss_mean.device)
+            angle = torch.matmul(plane.to(dtype=gauss_mean.dtype), gauss_mean.t())
+            length = torch.exp(-1 / 2 * (plane * plane).sum(dim=2, keepdim=True) * bandwidth ** 2)
+            angle_real = torch.cos(angle)
+            angle_img = torch.sin(angle)
+
+            cf_real = (angle_real * length).sum(dim=2, keepdim=True)
+            cf_img = (angle_img * length).sum(dim=2, keepdim=True)
+            return torch.cat([cf_real, cf_img], dim=2).to(dtype=torch.float32)
+        else:    # for zero-people ground truth
+            return torch.zeros(step * 2, step * 2, 2).to(dtype=torch.float32)
+
 

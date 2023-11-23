@@ -253,7 +253,13 @@ class ChfData_RCrop(CrowdData):
                                                                          dp.ImgTensor_dotTensor_processing.crop)
             img, dot_ann = dp.ImgTensor_dotTensor_processing.random_mirrow(img, dot_ann)
 
-            return img, dot_ann.to(device=self.device)
+            # construct ch.f.
+            chf = dp.Generating_data_from_dotted_annotation.construct_characteristic_function(dot_ann, self.bandwidth,
+                                                                                              0, self.chf_step,
+                                                                                              self.chf_tik)
+            assert chf[self.chf_step, self.chf_step, 0] == dot_ann.shape[0]
+
+            return img, chf.to(device=self.device)
         else:
             return self.dealt_imgs[item], self.dealt_dotmap[item], self.people_counts[item], self.im_list[item]
 
@@ -317,7 +323,13 @@ class ChfData_RCrop_Harddish_Load(CrowdData_Harddish_Load):
             img = self.transform(img)
             dot_ann = torch.from_numpy(dot_ann)
 
-            return img, dot_ann
+            # construct ch.f.
+            chf = dp.Generating_data_from_dotted_annotation.construct_characteristic_function(dot_ann, self.bandwidth,
+                                                                                              0, self.chf_step,
+                                                                                              self.chf_tik)
+            assert chf[self.chf_step, self.chf_step, 0] == dot_ann.shape[0]
+
+            return img, chf
         else:             ### for val
             img = self.transform(img)
             dot_ann = torch.from_numpy(dot_ann)
