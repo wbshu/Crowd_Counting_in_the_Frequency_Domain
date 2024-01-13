@@ -179,6 +179,14 @@ If the codes help you, please cite
   pages={19618--19627},
   year={2022}
 }
+
+@article{shu2023generalized,
+  title={Generalized Characteristic Function Loss for Crowd Analysis in the Frequency Domain},
+  author={Shu, Weibo and Wan, Jia and Chan, Antoni B},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2023},
+  publisher={IEEE}
+}
 ```
 
 ## Acknowledgement
