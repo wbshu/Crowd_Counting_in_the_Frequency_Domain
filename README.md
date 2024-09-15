@@ -1,7 +1,7 @@
 # Crowd Counting in the Frequency Domain
 
 This repository is the official implementation of [Crowd Counting in the Frequency Domain](https://openaccess.thecvf.com/content/CVPR2022/papers/Shu_Crowd_Counting_in_the_Frequency_Domain_CVPR_2022_paper.pdf) and `Generalized Characteristic Function Loss for Crowd Analysis in the
-Frequency Domain' (will appear on TPAMI 2023)
+Frequency Domain' (appear on TPAMI 2024)
 
 ## Some notes
 
@@ -19,6 +19,10 @@ improvement on it.
 
 4, If you use the codes for academic purpose, please cite my papers properly. To fast understand my codes, I suggest you
 to read the comments in my codes. Hope that my codes can help you solve some problems. Have fun!
+
+5, For the supplementary material of `Generalized Characteristic Function Loss for Crowd Analysis in the Frequency Domain',
+you can download it in this page: http://visal.cs.cityu.edu.hk/publications/ (seach the title in the page and download 
+the supplemental)
 
 ## Requirements
 Python >= 3.7
