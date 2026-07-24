@@ -1,26 +1,23 @@
 # Crowd Counting in the Frequency Domain
 
-This repository is the official implementation of [Crowd Counting in the Frequency Domain](https://openaccess.thecvf.com/content/CVPR2022/papers/Shu_Crowd_Counting_in_the_Frequency_Domain_CVPR_2022_paper.pdf) and `Generalized Characteristic Function Loss for Crowd Analysis in the
-Frequency Domain' (appear on TPAMI 2024)
+This repository is the official implementation of [Crowd Counting in the Frequency Domain](https://openaccess.thecvf.com/content/CVPR2022/papers/Shu_Crowd_Counting_in_the_Frequency_Domain_CVPR_2022_paper.pdf) and [Generalized Characteristic Function Loss for Crowd Analysis in the
+Frequency Domain](https://ieeexplore.ieee.org/document/10328449)
 
 ## Some notes
 
 1, For using the noisy crowd counting loss, please see the comments at trainer.py/Chf_trainer class//init method. Generally
 speaking, the noisy crowd counting loss performs better then general chf loss, but it also depends on the dataset and the 
-backbone network. In practical application, I suggest you to try both of them. 
+backbone network. In practical application, I suggest you to try both of them.
 
-2, For crowd localization part, I may release them in the future. Since the codes are still remained to be collated now, but I'm 
-busy in my graduation currently. 
-
-3, For the transformer based network, the loss performs very differently on different transformer-based networks, I guess 
+2, For the transformer based network, the loss performs very differently on different transformer-based networks, I guess 
 there maybe some overfitting problems on some special transformer structures. You can try it on diverse transformer structure
 and find the problem. I'm sure that this loss is powerful, but there is still much improvement space, I'm glad to see any
 improvement on it.  
 
-4, If you use the codes for academic purpose, please cite my papers properly. To fast understand my codes, I suggest you
+3, If you use the codes for academic purpose, please cite my papers properly. To fast understand my codes, I suggest you
 to read the comments in my codes. Hope that my codes can help you solve some problems. Have fun!
 
-5, For the supplementary material of `Generalized Characteristic Function Loss for Crowd Analysis in the Frequency Domain',
+4, For the supplementary material of `Generalized Characteristic Function Loss for Crowd Analysis in the Frequency Domain',
 you can download it in this page: http://visal.cs.cityu.edu.hk/publications/ (seach the title in the page and download 
 the supplemental)
 
@@ -170,8 +167,7 @@ python test.py SHTCA Model/model_pretrain/shtca.pth
 
 ## Pre-trained Models
 
-You can download my pretrained models [here](https://portland-my.sharepoint.com/:f:/g/personal/weiboshu2-c_my_cityu_edu_hk/Eor5dJSoOnRMq3CSwfbPzcwB024VVIfmn1lmD8ZOgPprHw?e=1vz2d7).
-The secret code is: 7926
+You can download my pretrained models from [https://github.com/wbshu/Crowd_Counting_in_the_Frequency_Domain/releases](https://github.com/wbshu/Crowd_Counting_in_the_Frequency_Domain/releases).
 
 ## Citation
 If the codes help you, please cite
